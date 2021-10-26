@@ -8,10 +8,8 @@
 
 int main()
 {
-    fmt::print(fg(fmt::color::red) | fmt::emphasis::strikethrough, "{:s}({:d}): Hello World\n", __func__, __LINE__);
-    
     std::filesystem::path project_root = std::filesystem::canonical(__FILE__).parent_path();
-    fmt::print("Project root: {}\n", project_root.string());
+    fmt::print(fg(fmt::color::red) | fmt::emphasis::bold | fmt::emphasis::italic, "Project root: {}\n", project_root.string());
 
     PluginLoader loader(project_root / "plugins/build/libfoo.so");
     void (*display)() = (void(*)())loader.LoadSymbol("display");
